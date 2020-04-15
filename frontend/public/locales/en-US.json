@@ -1,0 +1,8 @@
+{
+	"app.cluster.card.title": "Details",
+	"app.cluster.api.address": "Cluster API address",
+	"app.cluster.id": "Cluster ID",
+	"app.cluster.provider": "Provider",
+	"app.version": "OpenShift version",
+	"app.update.channel": "Update channel"
+}

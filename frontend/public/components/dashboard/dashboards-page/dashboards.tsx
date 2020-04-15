@@ -19,6 +19,8 @@ import {
   isDashboardsTab,
 } from '@console/plugin-sdk';
 import { RootState } from '../../../redux';
+import { Flex, FlexItem, FlexModifiers } from '@patternfly/react-core';
+import { I18nContext } from '../../i18n-wrapper';
 
 const getCardsOnPosition = (cards: DashboardsCard[], position: GridPosition): GridDashboardCard[] =>
   cards
@@ -68,6 +70,8 @@ const DashboardsPage_: React.FC<DashboardsPageProps> = ({ match, kindsInFlight, 
     [pluginPages],
   );
 
+  const context = React.useContext<any>(I18nContext);
+
   return kindsInFlight && k8sModels.size === 0 ? (
     <LoadingBox />
   ) : (
@@ -75,7 +79,20 @@ const DashboardsPage_: React.FC<DashboardsPageProps> = ({ match, kindsInFlight, 
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      <PageHeading title={title} detail={true} />
+      <Flex>
+        <FlexItem breakpointMods={[{modifier: FlexModifiers.grow}]}>
+          <PageHeading title={title} detail={true} />
+        </FlexItem>
+        <FlexItem breakpointMods={[{modifier: FlexModifiers["spacer-sm"]}]}>
+          <select onChange={context.selectLang}
+            className="pull-right pf-c-select pf-m-expanded"
+            value={context.locale}>
+            <option value="en-US">English</option>
+            <option value="it-IT">Italian</option>
+            <option value="ja-JP">Japanese</option>
+          </select>
+        </FlexItem>
+      </Flex>
       <HorizontalNav match={match} pages={allPages} noStatusBox />
     </>
   );

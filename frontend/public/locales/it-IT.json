@@ -1,0 +1,8 @@
+{
+	"app.cluster.card.title": "Dettagli",
+	"app.cluster.api.address": "Indirizzo API del cluster",
+	"app.cluster.id": "Grappolo ID",
+	"app.cluster.provider": "Fornitrice",
+	"app.version": "OpenShift versione",
+	"app.update.channel": "Aggiorna canale"
+}

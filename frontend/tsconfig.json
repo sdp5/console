@@ -2,7 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "module": "esnext",
+    "lib": ["ESNext.Intl"],
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "outDir": "./public/dist/build/",
     "target": "es2016",
     "jsx": "react",

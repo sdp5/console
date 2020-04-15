@@ -1,0 +1,8 @@
+{
+	"app.cluster.card.title": "細部",
+	"app.cluster.api.address": "クラスターAPIアドレス",
+	"app.cluster.id": "クラスターID",
+	"app.cluster.provider": "プロバイダー",
+	"app.version": "OpenShiftバージョン",
+	"app.update.channel": "チャンネルを更新"
+}
