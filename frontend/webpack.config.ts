@@ -77,6 +77,9 @@ const config: Configuration = {
               transpileOnly: true, // fork-ts-checker-webpack-plugin takes care of type checking
             },
           },
+          {
+            loader: 'babel-loader'
+          },
         ],
       },
       {

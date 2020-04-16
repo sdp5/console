@@ -27,7 +27,13 @@
     "test-suite": "ts-node -O '{\"module\":\"commonjs\"}' ./node_modules/.bin/protractor integration-tests/protractor.conf.ts",
     "debug-test-suite": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' node -r ts-node/register --inspect-brk ./node_modules/.bin/protractor integration-tests/protractor.conf.ts",
     "analyze": "NODE_ENV=production NODE_OPTIONS=--max-old-space-size=4096 ts-node -O '{\"module\":\"commonjs\"}' ./node_modules/.bin/webpack --mode=production --profile --json | awk '{if(NR>2)print}' > public/dist/stats.json && ts-node -O '{\"module\":\"commonjs\"}' ./node_modules/.bin/webpack-bundle-analyzer --mode static -r public/dist/report.html public/dist/stats.json",
-    "prettier-all": "prettier --write '**/*.{js,jsx,ts,tsx,json}'"
+    "prettier-all": "prettier --write '**/*.{js,jsx,ts,tsx,json}'",
+    "l10n-start": "lingui compile && react-scripts start",
+    "l10n-build": "lingui compile && react-scripts build",
+    "l10n-help": "lingui help",
+    "add-locale": "lingui add-locale",
+    "l10n-extract": "lingui extract",
+    "l10n-compile": "lingui compile"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -75,6 +81,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.9.0",
+    "@lingui/react": "^2.9.1",
     "@patternfly/patternfly": "2.65.3",
     "@patternfly/react-catalog-view-extension": "1.4.11",
     "@patternfly/react-charts": "5.2.2",
@@ -142,6 +149,9 @@
     "yup": "^0.27.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@lingui/cli": "^2.9.1",
+    "@lingui/macro": "^3.0.0-10",
     "@types/classnames": "^2.2.7",
     "@types/enzyme": "3.10.x",
     "@types/glob": "7.x",
@@ -161,6 +171,7 @@
     "@types/react-transition-group": "2.x",
     "@types/react-virtualized": "9.x",
     "@types/webpack": "4.x",
+    "babel-core": "^7.0.0-bridge.0",
     "bootstrap-sass": "^3.3.7",
     "browser-env": "3.x",
     "cache-loader": "1.x",

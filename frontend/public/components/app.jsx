@@ -20,6 +20,8 @@ import * as UIActions from '../actions/ui';
 import { fetchSwagger, getCachedResources, referenceForModel } from '../module/k8s';
 import { receivedResources, watchAPIServices } from '../actions/k8s';
 import { ClusterVersionModel } from '../models';
+import { I18nProvider } from "@lingui/react";
+import { i18n, defaultLocale } from "../i18n";
 import '../vendor.scss';
 import '../style.scss';
 
@@ -225,10 +227,12 @@ if ('serviceWorker' in navigator) {
 }
 
 render(
-  <Provider store={store}>
-    <Router history={history} basename={window.SERVER_FLAGS.basePath}>
-      <Route path="/" component={App} />
-    </Router>
-  </Provider>,
+  <I18nProvider i18n={i18n}>
+    <Provider store={store}>
+      <Router history={history} basename={window.SERVER_FLAGS.basePath}>
+        <Route path="/" component={App} />
+      </Router>
+    </Provider>
+  </I18nProvider>,
   document.getElementById('app'),
 );

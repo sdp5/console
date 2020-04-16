@@ -12,6 +12,7 @@ import DetailItem from '@console/shared/src/components/dashboard/details-card/De
 import DashboardCardLink from '@console/shared/src/components/dashboard/dashboard-card/DashboardCardLink';
 import { DashboardItemProps, withDashboardResources } from '../../with-dashboard-resources';
 import { InfrastructureModel, ClusterVersionModel } from '../../../../models';
+import { Trans } from "@lingui/macro";
 import {
   referenceForModel,
   getOpenShiftVersion,
@@ -137,7 +138,7 @@ export const DetailsCard_ = connect(mapStateToProps)(
             {openshiftFlag ? (
               <>
                 <DetailItem
-                  title="Cluster API address"
+                  title={<Trans>"Cluster API address"</Trans>}
                   isLoading={!infrastructureLoaded}
                   error={!!infrastructureError || (infrastructure && !infrastuctureApiUrl)}
                   valueClassName="co-select-to-copy"

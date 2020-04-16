@@ -1,0 +1,6 @@
+{
+  "localeDir": "public/locales/",
+  "srcPathDirs": ["./components/dashboard/"],
+  "format": "po",
+  "fallbackLocale": "en"
+}
