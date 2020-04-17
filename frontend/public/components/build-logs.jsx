@@ -1,5 +1,6 @@
 import * as _ from 'lodash-es';
 import * as React from 'react';
+import { Trans } from "@lingui/macro";
 import {
   LOG_SOURCE_RUNNING,
   LOG_SOURCE_TERMINATED,
@@ -24,7 +25,7 @@ const PipelineLogMessage = ({ build }) => {
     </>
   );
 
-  return <MsgBox title="See Jenkins Log" detail={detail} />;
+  return <MsgBox title={<Trans>"See Jenkins Log"</Trans>} detail={detail} />;
 };
 
 const buildPhaseToLogSourceStatus = (phase) => {

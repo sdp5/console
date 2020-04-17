@@ -78,7 +78,7 @@ const config: Configuration = {
             },
           },
           {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
           },
         ],
       },
