@@ -27,7 +27,10 @@
     "test-suite": "ts-node -O '{\"module\":\"commonjs\"}' ./node_modules/.bin/protractor integration-tests/protractor.conf.ts",
     "debug-test-suite": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' node -r ts-node/register --inspect-brk ./node_modules/.bin/protractor integration-tests/protractor.conf.ts",
     "analyze": "NODE_ENV=production NODE_OPTIONS=--max-old-space-size=4096 ts-node -O '{\"module\":\"commonjs\"}' ./node_modules/.bin/webpack --mode=production --profile --json | awk '{if(NR>2)print}' > public/dist/stats.json && ts-node -O '{\"module\":\"commonjs\"}' ./node_modules/.bin/webpack-bundle-analyzer --mode static -r public/dist/report.html public/dist/stats.json",
-    "prettier-all": "prettier --write '**/*.{js,jsx,ts,tsx,json}'"
+    "prettier-all": "prettier --write '**/*.{js,jsx,ts,tsx,json}'",
+    "i18n:add-locale": "lingui add-locale",
+    "i18n:extract": "lingui extract",
+    "i18n:compile": "lingui compile"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -83,6 +86,8 @@
     "@patternfly/react-topology": "2.14.47",
     "@patternfly/react-virtualized-extension": "1.4.48",
     "@patternfly/react-catalog-view-extension": "1.4.47",
+    "@lingui/loader": "^2.9.1",
+    "@lingui/react": "^2.9.1",
     "abort-controller": "3.0.0",
     "classnames": "2.x",
     "core-js": "2.x",
@@ -124,6 +129,7 @@
     "react-router-dom": "5.0.1",
     "react-tagsinput": "3.19.x",
     "react-transition-group": "2.3.x",
+    "react-use": "^14.1.1",
     "react-virtualized": "9.x",
     "redux": "4.0.1",
     "reselect": "4.x",
@@ -135,6 +141,7 @@
     "typesafe-actions": "^4.2.1",
     "url-polyfill": "^1.1.5",
     "url-search-params-polyfill": "2.x",
+    "use-locales": "^0.6.3",
     "vscode-languageserver-types": "^3.10.0",
     "whatwg-fetch": "2.x",
     "xterm": "^3.12.2",
@@ -142,6 +149,9 @@
     "yup": "^0.27.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@lingui/cli": "^2.9.1",
+    "@lingui/macro": "^2.9.1",
     "@types/classnames": "^2.2.7",
     "@types/enzyme": "3.10.x",
     "@types/glob": "7.x",
@@ -161,6 +171,7 @@
     "@types/react-transition-group": "2.x",
     "@types/react-virtualized": "9.x",
     "@types/webpack": "4.x",
+    "babel-core": "^7.0.0-bridge.0",
     "bootstrap-sass": "^3.3.7",
     "browser-env": "3.x",
     "cache-loader": "1.x",

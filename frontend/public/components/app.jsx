@@ -9,6 +9,7 @@ import 'abort-controller/polyfill';
 import CloudShell from '@console/app/src/components/cloud-shell/CloudShell';
 import CloudShellTab from '@console/app/src/components/cloud-shell/CloudShellTab';
 import store from '../redux';
+import { I18nContextProvider } from './i18n-context-provider';
 import { detectFeatures } from '../actions/features';
 import AppContents from './app-contents';
 import { getBrandingDetails, Masthead } from './masthead';
@@ -226,12 +227,14 @@ if ('serviceWorker' in navigator) {
 
 render(
   <Provider store={store}>
-    <Router history={history} basename={window.SERVER_FLAGS.basePath}>
-      <Switch>
-        <Route path="/terminal" component={CloudShellTab} />
-        <Route path="/" component={App} />
-      </Switch>
-    </Router>
+    <I18nContextProvider>
+      <Router history={history} basename={window.SERVER_FLAGS.basePath}>
+        <Switch>
+          <Route path="/terminal" component={CloudShellTab} />
+          <Route path="/" component={App} />
+        </Switch>
+      </Router>
+    </I18nContextProvider>
   </Provider>,
   document.getElementById('app'),
 );
