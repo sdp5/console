@@ -9,6 +9,7 @@ import 'abort-controller/polyfill';
 import CloudShell from '@console/app/src/components/cloud-shell/CloudShell';
 import CloudShellTab from '@console/app/src/components/cloud-shell/CloudShellTab';
 import store from '../redux';
+import '../i18n';
 import { detectFeatures } from '../actions/features';
 import AppContents from './app-contents';
 import { getBrandingDetails, Masthead } from './masthead';

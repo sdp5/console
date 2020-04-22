@@ -13,6 +13,7 @@ import {
   isDashboardsOverviewHealthResourceSubsystem,
   isDashboardsOverviewHealthOperator,
 } from '@console/plugin-sdk';
+import { useTranslation } from 'react-i18next';
 import { ArrowCircleUpIcon } from '@patternfly/react-icons';
 import { Gallery, GalleryItem, Button } from '@patternfly/react-core';
 import { FLAGS } from '@console/shared';
@@ -160,11 +161,13 @@ export const StatusCard = connect<StatusCardProps>(mapStateToProps)(({ k8sModels
     });
   }
 
+  const { t } = useTranslation();
+
   return (
     <DashboardCard gradient data-test-id="status-card">
       <DashboardCardHeader>
-        <DashboardCardTitle>Status</DashboardCardTitle>
-        <DashboardCardLink to="/monitoring/alerts">View alerts</DashboardCardLink>
+        <DashboardCardTitle>{t("Status")}</DashboardCardTitle>
+        <DashboardCardLink to="/monitoring/alerts">{t("View alerts")}</DashboardCardLink>
       </DashboardCardHeader>
       <DashboardCardBody>
         <HealthBody>

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@patternfly/react-core';
+import { useTranslation } from 'react-i18next';
 import { ArrowCircleUpIcon, InProgressIcon } from '@patternfly/react-icons';
 import { FLAGS, getInfrastructureAPIURL, getInfrastructurePlatform } from '@console/shared';
 import DashboardCard from '@console/shared/src/components/dashboard/dashboard-card/DashboardCard';
@@ -126,18 +127,20 @@ export const DetailsCard_ = connect(mapStateToProps)(
 
     const k8sGitVersion = getK8sGitVersion(k8sVersion);
 
+    const { t } = useTranslation();
+
     return (
       <DashboardCard data-test-id="details-card">
         <DashboardCardHeader>
-          <DashboardCardTitle>Details</DashboardCardTitle>
-          <DashboardCardLink to="/settings/cluster/">View settings</DashboardCardLink>
+          <DashboardCardTitle>{t("Details")}</DashboardCardTitle>
+          <DashboardCardLink to="/settings/cluster/">{t("View settings")}</DashboardCardLink>
         </DashboardCardHeader>
         <DashboardCardBody isLoading={flagPending(openshiftFlag)}>
           <DetailsBody>
             {openshiftFlag ? (
               <>
                 <DetailItem
-                  title="Cluster API address"
+                  title={t("Cluster API address")}
                   isLoading={!infrastructureLoaded}
                   error={!!infrastructureError || (infrastructure && !infrastuctureApiUrl)}
                   valueClassName="co-select-to-copy"
@@ -145,7 +148,7 @@ export const DetailsCard_ = connect(mapStateToProps)(
                   {infrastuctureApiUrl}
                 </DetailItem>
                 <DetailItem
-                  title="Cluster ID"
+                  title={t("Cluster ID")}
                   error={!!clusterVersionError || (clusterVersionLoaded && !clusterId)}
                   isLoading={!clusterVersionLoaded}
                 >
@@ -156,7 +159,7 @@ export const DetailsCard_ = connect(mapStateToProps)(
                     )}
                 </DetailItem>
                 <DetailItem
-                  title="Provider"
+                  title={t("Provider")}
                   error={!!infrastructureError || (infrastructure && !infrastructurePlatform)}
                   isLoading={!infrastructureLoaded}
                   valueClassName="co-select-to-copy"
@@ -164,14 +167,14 @@ export const DetailsCard_ = connect(mapStateToProps)(
                   {infrastructurePlatform}
                 </DetailItem>
                 <DetailItem
-                  title="OpenShift version"
+                  title={t("OpenShift version")}
                   error={!!clusterVersionError || (clusterVersionLoaded && !openShiftVersion)}
                   isLoading={!clusterVersionLoaded}
                 >
                   <ClusterVersion cv={clusterVersionData} />
                 </DetailItem>
                 <DetailItem
-                  title="Update channel"
+                  title={t("Update channel")}
                   isLoading={!clusterVersionLoaded && !clusterVersionError}
                   error={!!clusterVersionError || (clusterVersionLoaded && !cvChannel)}
                   valueClassName="co-select-to-copy"

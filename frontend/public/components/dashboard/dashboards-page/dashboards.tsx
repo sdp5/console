@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Map as ImmutableMap } from 'immutable';
 import { Helmet } from 'react-helmet';
 
+import { useTranslation } from 'react-i18next';
 import { ClusterDashboard } from './cluster-dashboard/cluster-dashboard';
 import { HorizontalNav, PageHeading, LoadingBox, Page, AsyncComponent } from '../../utils';
 import Dashboard from '@console/shared/src/components/dashboard/Dashboard';
@@ -11,6 +12,7 @@ import DashboardGrid, {
   GridPosition,
   GridDashboardCard,
 } from '@console/shared/src/components/dashboard/DashboardGrid';
+import { Flex, FlexItem, FlexModifiers } from '@patternfly/react-core';
 import {
   useExtensions,
   DashboardsCard,
@@ -47,7 +49,15 @@ const getPluginTabPages = (tabs: DashboardsTab[], cards: DashboardsCard[]): Page
   });
 
 const DashboardsPage_: React.FC<DashboardsPageProps> = ({ match, kindsInFlight, k8sModels }) => {
-  const title = 'Overview';
+
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (language : string) => {
+    localStorage.usrLocale = language;
+    i18n.changeLanguage(language);
+  }
+
+  const title = t("Overview");
   const tabExtensions = useExtensions<DashboardsTab>(isDashboardsTab);
   const cardExtensions = useExtensions<DashboardsCard>(isDashboardsCard);
 
@@ -75,7 +85,21 @@ const DashboardsPage_: React.FC<DashboardsPageProps> = ({ match, kindsInFlight, 
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      <PageHeading title={title} detail={true} />
+      <Flex>
+        <FlexItem breakpointMods={[{modifier: FlexModifiers.grow}]}>
+          <PageHeading title={title} detail={true} />
+        </FlexItem>
+        <FlexItem breakpointMods={[{modifier: FlexModifiers["spacer-sm"]}]}>
+          <select onChange={e => changeLanguage(e.target.value)}
+            className="pull-right pf-c-select pf-m-expanded"
+            value={localStorage.usrLocale || "en"}>
+            <option value="en">English</option>
+            <option value="zh">Chinese</option>
+            <option value="es">Spanish</option>
+            <option value="ja">Japanese</option>
+          </select>
+        </FlexItem>
+      </Flex>
       <HorizontalNav match={match} pages={allPages} noStatusBox />
     </>
   );

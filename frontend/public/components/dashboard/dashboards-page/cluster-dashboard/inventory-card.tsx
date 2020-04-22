@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 import DashboardCard from '@console/shared/src/components/dashboard/dashboard-card/DashboardCard';
 import DashboardCardBody from '@console/shared/src/components/dashboard/dashboard-card/DashboardCardBody';
 import DashboardCardHeader from '@console/shared/src/components/dashboard/dashboard-card/DashboardCardHeader';
@@ -110,10 +111,12 @@ export const InventoryCard = () => {
     replacementExtensions,
   ]);
 
+  const { t } = useTranslation();
+
   return (
     <DashboardCard data-test-id="inventory-card">
       <DashboardCardHeader>
-        <DashboardCardTitle>Cluster Inventory</DashboardCardTitle>
+        <DashboardCardTitle>{t("Cluster Inventory")}</DashboardCardTitle>
       </DashboardCardHeader>
       <DashboardCardBody>
         {mergedItems.map((item) => (
