@@ -51,7 +51,11 @@ const getPluginTabPages = (tabs: DashboardsTab[], cards: DashboardsCard[]): Page
 const DashboardsPage_: React.FC<DashboardsPageProps> = ({ match, kindsInFlight, k8sModels }) => {
 
   const { t, i18n } = useTranslation();
-  const changeLanguage = (language : string) => i18n.changeLanguage(language);
+
+  const changeLanguage = (language : string) => {
+    localStorage.usrLocale = language;
+    i18n.changeLanguage(language);
+  }
 
   const title = t("Overview");
   const tabExtensions = useExtensions<DashboardsTab>(isDashboardsTab);
@@ -66,7 +70,7 @@ const DashboardsPage_: React.FC<DashboardsPageProps> = ({ match, kindsInFlight, 
     () => [
       {
         href: '',
-        name: t('Cluster'),
+        name: 'Cluster',
         component: ClusterDashboard,
       },
       ...pluginPages,
@@ -87,7 +91,8 @@ const DashboardsPage_: React.FC<DashboardsPageProps> = ({ match, kindsInFlight, 
         </FlexItem>
         <FlexItem breakpointMods={[{modifier: FlexModifiers["spacer-sm"]}]}>
           <select onChange={e => changeLanguage(e.target.value)}
-            className="pull-right pf-c-select pf-m-expanded">
+            className="pull-right pf-c-select pf-m-expanded"
+            value={localStorage.usrLocale || "en"}>
             <option value="en">English</option>
             <option value="zh">Chinese</option>
             <option value="es">Spanish</option>
