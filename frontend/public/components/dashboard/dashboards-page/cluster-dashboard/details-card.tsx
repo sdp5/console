@@ -33,6 +33,9 @@ import { clusterUpdateModal } from '../../../modals';
 import { Link } from 'react-router-dom';
 import { useK8sGet } from '../../../utils/k8s-get-hook';
 import { useK8sWatchResource, WatchK8sResource } from '../../../utils/k8s-watch-hook';
+import { useI18n } from "../../../use-i18n";
+
+const i18n = useI18n();
 
 const ClusterVersion: React.FC<ClusterVersionProps> = ({ cv }) => {
   const desiredVersion = getDesiredClusterVersion(cv);
@@ -137,7 +140,7 @@ export const DetailsCard_ = connect(mapStateToProps)(
             {openshiftFlag ? (
               <>
                 <DetailItem
-                  title="Cluster API address"
+                  title={i18n._("Cluster API address")}
                   isLoading={!infrastructureLoaded}
                   error={!!infrastructureError || (infrastructure && !infrastuctureApiUrl)}
                   valueClassName="co-select-to-copy"
@@ -145,7 +148,7 @@ export const DetailsCard_ = connect(mapStateToProps)(
                   {infrastuctureApiUrl}
                 </DetailItem>
                 <DetailItem
-                  title="Cluster ID"
+                  title={i18n._("Cluster ID")}
                   error={!!clusterVersionError || (clusterVersionLoaded && !clusterId)}
                   isLoading={!clusterVersionLoaded}
                 >
@@ -156,7 +159,7 @@ export const DetailsCard_ = connect(mapStateToProps)(
                     )}
                 </DetailItem>
                 <DetailItem
-                  title="Provider"
+                  title={i18n._("Provider")}
                   error={!!infrastructureError || (infrastructure && !infrastructurePlatform)}
                   isLoading={!infrastructureLoaded}
                   valueClassName="co-select-to-copy"
@@ -164,14 +167,14 @@ export const DetailsCard_ = connect(mapStateToProps)(
                   {infrastructurePlatform}
                 </DetailItem>
                 <DetailItem
-                  title="OpenShift version"
+                  title={i18n._("OpenShift version")}
                   error={!!clusterVersionError || (clusterVersionLoaded && !openShiftVersion)}
                   isLoading={!clusterVersionLoaded}
                 >
                   <ClusterVersion cv={clusterVersionData} />
                 </DetailItem>
                 <DetailItem
-                  title="Update channel"
+                  title={i18n._("Update channel")}
                   isLoading={!clusterVersionLoaded && !clusterVersionError}
                   error={!!clusterVersionError || (clusterVersionLoaded && !cvChannel)}
                   valueClassName="co-select-to-copy"
