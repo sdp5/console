@@ -16,3 +16,5 @@
 /frontend/npm-debug.log
 /frontend/yarn-error.log
 /frontend/gui_test_screenshots
+/frontend/public/locales/*/*.js
+/frontend/public/locales/_build
