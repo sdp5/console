@@ -23,7 +23,7 @@ export const DetailItem: React.FC<DetailItemProps> = React.memo(
 export default DetailItem;
 
 type DetailItemProps = {
-  title: string;
+  title: string | any;
   children: React.ReactNode;
   isLoading?: boolean;
   error?: boolean;

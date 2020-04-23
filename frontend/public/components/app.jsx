@@ -20,6 +20,7 @@ import * as UIActions from '../actions/ui';
 import { fetchSwagger, getCachedResources, referenceForModel } from '../module/k8s';
 import { receivedResources, watchAPIServices } from '../actions/k8s';
 import { ClusterVersionModel } from '../models';
+import I18nWrapper from './i18n-wrapper';
 import '../vendor.scss';
 import '../style.scss';
 
@@ -225,13 +226,15 @@ if ('serviceWorker' in navigator) {
 }
 
 render(
-  <Provider store={store}>
-    <Router history={history} basename={window.SERVER_FLAGS.basePath}>
-      <Switch>
-        <Route path="/terminal" component={CloudShellTab} />
-        <Route path="/" component={App} />
-      </Switch>
-    </Router>
-  </Provider>,
+  <I18nWrapper>
+    <Provider store={store}>
+      <Router history={history} basename={window.SERVER_FLAGS.basePath}>
+        <Switch>
+          <Route path="/terminal" component={CloudShellTab} />
+          <Route path="/" component={App} />
+        </Switch>
+      </Router>
+    </Provider>
+  </I18nWrapper>,
   document.getElementById('app'),
 );
